@@ -1,0 +1,4 @@
+create table valid_order_status (status_name varchar(50));
+insert into valid_order_status values
+('ON_HOLD'),('PAYMENT_REVIEW'),('PROCESSING'),('CLOSED'),('SUSPECTED_FRAUD'),('COMPLETE'),('PENDING'),('CANCELED'),
+('PENDING_PAYMENT')
