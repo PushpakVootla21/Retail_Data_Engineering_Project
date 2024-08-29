@@ -94,9 +94,7 @@ This diagram shows a database schema, which describes the structure of a databas
 
 ## Basic Flow for creating this project
 
-1. Subscription Needed -  Azure & AWS Cloud (Free Trail subscription also works fine)
-
-### Resource Group Creation in Azure:
+Subscription Needed -  Azure & AWS Cloud (Free Trail subscription also works fine)
 
 1. Resource Group creation
 
@@ -142,7 +140,7 @@ A resource group name *retaildbproject* is created as shown.
 
 ![Resource Group](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Resource%20group.png)
 
-2. Azure Data Lake Storage (ADLS Gen2) creation
+2. Azure Data Lake Storage (ADLS Gen2) creation:
    
 - Step 1: Click on "Storage accounts"
 
@@ -177,8 +175,46 @@ A resource group name *retaildbproject* is created as shown.
   Once the storage account is created, you will see it listed in the "Storage accounts" page. You can click on the storage account to view its 
   details and configure additional settings.
 
+  A *retaildbsales* storage account is created. A new container named *sales* is created in which *folders - landing(for uploading order file)*, *order_items (for receiving the order_items from S3 bucket)*, *discarded folder (to store the files having duplication and non valid order_status)* are created group as shown.
   
    ![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/ADLS_files.png)
+
+3. Azure SQL Database Creation:
+   
+- Step 1: Click on "SQL databases"
+
+  In the Azure portal, click on the "SQL databases" button in the navigation menu.
+
+- Step 2: Click on "New SQL Database"
+
+  Click on the "New SQL Database" button.
+
+- Step 3: Enter Database Details
+
+ In the "Create a SQL Database" page, enter the following details:
+
+ 1. Database name: Enter the name for your SQL database (e.g., "retaildb").
+ 2. Subscription: Select the Azure subscription you want to use for this database.
+ 3. Resource group: Select the resource group you created earlier (e.g., "EcommerceApp").
+ 4. Server: Create a new server with the name "retaildb-sales". You will need to provide an administrator username and password.
+ 5. Pricing tier: Select the pricing tier for your database (e.g., "Basic", "Standard", or "Premium").
+
+- Step 4: Click "Review + create"
+
+  Click the "Review + create" button to review your database settings.
+
+- Step 5: Click "Create"
+
+  Click the "Create" button to create the database.
+
+- Step 6: Verify Database Creation
+
+  Once the database is created, you will see it listed in the "SQL databases" page. You can click on the database to view its details and 
+  configure additional settings.
+
+  *retaildb* database is created. Two tables *customers & valid_order_status for validating the order_status* are created with SQL code below and the *sales_reporting* table will be auto generated after processing completion in databricks
+
+   ![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20sql%20database.png)
 
 
 
