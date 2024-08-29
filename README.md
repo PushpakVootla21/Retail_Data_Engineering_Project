@@ -94,9 +94,93 @@ This diagram shows a database schema, which describes the structure of a databas
 
 ## Basic Flow for creating this project
 
-1. Subscription Needed -  Azure & AWS Cloud (Free Trail also fine)
+1. Subscription Needed -  Azure & AWS Cloud (Free Trail subscription also works fine)
 
-# Resource Group Creation in Azure
+### Resource Group Creation in Azure:
+
+1. Resource Group creation
+
+In Azure, a resource group is a container that holds related resources for an application. It is a logical grouping of resources that can be managed together. Resource groups provide a way to organize and manage resources in Azure, making it easier to perform actions on a group of resources as a single unit.
+
+Creating a Resource Group using Azure Portal
+
+To create a resource group using the Azure portal, follow these steps:
+
+- Step 1: Log in to Azure Portal
+  
+  Open a web browser and navigate to the Azure portal (https://portal.azure.com). Log in with your Azure account credentials.
+  
+- Step 2: Click on "Resource groups"
+  
+  In the Azure portal, click on the "Resource groups" button in the navigation menu.
+
+- Step 3: Click on "New resource group"
+  
+  Click on the "New resource group" button.
+
+- Step 4: Enter Resource Group Details
+  
+  In the "Create a resource group" page, enter the following details:
+
+  Resource group name: Enter a unique name for your resource group (e.g., "EcommerceApp").
+  
+  Subscription: Select the Azure subscription you want to use for this resource group.
+  
+  Resource group location: Select the location for your resource group (e.g., "West US").
+  
+  Tags: Optionally, you can add tags to your resource group to categorize and filter resources.
+  
+- Step 5: Click "Create"
+  
+  Click the "Create" button to create the resource group.
+
+- Step 6: Verify Resource Group Creation
+  Once the resource group is created, you will see it listed in the "Resource groups" page. You can click on the resource group to view its 
+  details and add resources to it.
+  
+A resource group name *retaildbproject* is created as shown.
+
+![Resource Group](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Resource%20group.png)
+
+2. Azure Data Lake Storage (ADLS Gen2) creation
+   
+- Step 1: Click on "Storage accounts"
+
+  In the Azure portal, click on the "Storage accounts" button in the navigation menu.
+
+- Step 2: Click on "New storage account"
+
+  Click on the "New storage account" button.
+
+- Step 3: Enter Storage Account Details
+
+  In the "Create a storage account" page, enter the following details:
+
+  1. Storage account name: Enter a unique name for your storage account (e.g., "myadlsgen2").
+  2. Subscription: Select the Azure subscription you want to use for this storage account.
+  3. Resource group: Select the resource group you created earlier (e.g., "EcommerceApp").
+  4. Location: Select the location for your storage account (e.g., "West US").
+  5. Performance: Select the performance tier for your storage account (e.g., "Standard").
+  6. Account kind: Select "StorageV2" as the account kind.
+  7. Hierarchical namespace: Select "Enabled" to enable hierarchical namespace for ADLS Gen2.
+     
+- Step 4: Click "Review + create"
+
+  Click the "Review + create" button to review your storage account settings.
+
+- Step 5: Click "Create"
+
+  Click the "Create" button to create the storage account.
+
+- Step 6: Verify Storage Account Creation
+
+  Once the storage account is created, you will see it listed in the "Storage accounts" page. You can click on the storage account to view its 
+  details and configure additional settings.
+   
+
+
+
+
    
 
 
