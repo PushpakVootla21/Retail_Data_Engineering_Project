@@ -25,4 +25,7 @@ This project leverages Azure's robust data engineering ecosystem to analyze reta
 
 Here is the link to the datasets - https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/tree/main/Datasets
 
+## Data Model
+![Data Model](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/ER.png)
+
 
