@@ -176,7 +176,9 @@ A resource group name *retaildbproject* is created as shown.
 
   Once the storage account is created, you will see it listed in the "Storage accounts" page. You can click on the storage account to view its 
   details and configure additional settings.
-   
+
+  
+   ![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/ADLS_files.png)
 
 
 
