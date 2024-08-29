@@ -175,9 +175,9 @@ A resource group name *retaildbproject* is created as shown.
   Once the storage account is created, you will see it listed in the "Storage accounts" page. You can click on the storage account to view its 
   details and configure additional settings.
 
-  A *retaildbsales* storage account is created. A new container named *sales* is created in which *folders - landing(for uploading order file)*, *order_items (for receiving the order_items from S3 bucket)*, *discarded folder (to store the files having duplication and non valid order_status)* are created group as shown.
-  
-   ![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/ADLS_files.png)
+  A *retaildbsales* storage account is created. A new container named *sales* is created in which *folders - landing(for uploading order file)*, *order_items (for receiving the order_items from S3 bucket)*, *discarded folder (to store the files having duplication and non valid order_status)*, *customers folder will have customers data file* are created group as shown.
+
+![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/ADLS_files.png)
 
 3. Azure SQL Database Creation:
    
@@ -214,7 +214,33 @@ A resource group name *retaildbproject* is created as shown.
 
   *retaildb* database is created. Two tables *customers & valid_order_status for validating the order_status* are created with SQL code below and the *sales_reporting* table will be auto generated after processing completion in databricks
 
-   ![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20sql%20database.png)
+![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20sql%20database.png)
+
+SQL Code for creating valid_order_status table
+
+```ruby
+create table valid_order_status (status_name varchar(50));
+insert into valid_order_status values
+('ON_HOLD'),('PAYMENT_REVIEW'),('PROCESSING'),('CLOSED'),('SUSPECTED_FRAUD'),('COMPLETE'),('PENDING'),('CANCELED'),
+('PENDING_PAYMENT')
+```
+
+SQL Code for creating customer table (*Data will be inserted into table from ADLS Gen2 customers folder having csv file using copy through dta factory*)
+
+```ruby
+CREATE TABLE customers (
+customer_id INT NOT NULL,
+customer_fname VARCHAR(45) NOT NULL,
+customer_lname VARCHAR(45) NOT NULL,
+customer_email VARCHAR(45) NOT NULL,
+customer_password VARCHAR(45) NOT NULL,
+customer_street VARCHAR(255) NOT NULL,
+customer_city VARCHAR(45) NOT NULL,
+customer_state VARCHAR(45) NOT NULL,
+customer_zipcode VARCHAR(45) NOT NULL,
+PRIMARY KEY (customer_id)
+);
+```
 
 
 
