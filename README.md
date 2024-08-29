@@ -46,7 +46,7 @@ The diagram depicts a retail customer data pipeline architecture. This pipeline 
 ### Key Points:
 1. Data Pipeline: The entire process from data ingestion to loading into the SQL database is orchestrated as a data pipeline. This ensures consistent data flow, handling of changes, and data quality.
    
-2. Data Security: Security measures are likely implemented throughout the pipeline, including secure access control to ADLS Gen2 and the Azure SQL database, encryption in transit and at rest, and data masking or anonymization where necessary.
+2. Data Security: Security measures are implemented throughout the pipeline, including secure access control to ADLS Gen2 and the Azure SQL database, S3 Bucket encryption in transit and at rest, and data masking or anonymization where necessary in data.
    
    - Databricks Access Token: Instead of hardcoding the Databricks access token within the Data Factory pipeline or other components, store it securely in Azure Key Vault. The pipeline can then retrieve this token during execution using the Key Vault API.
      
