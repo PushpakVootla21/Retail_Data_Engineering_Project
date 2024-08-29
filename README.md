@@ -19,13 +19,28 @@ This project leverages Azure's robust data engineering ecosystem to analyze reta
    - Amazon S3
 
 ## Datasets used
-1. Customers: Represents customers who place orders. Includes information like customer ID, first and last name, username, password, address, city, state, and postal code.
-2. Orders: Represents individual orders placed by customers. Includes information like order ID, order date, customer ID, and order status.
-3. Order Items: Represents the individual items included within an order. Includes information like order item ID, the order ID it belongs to, the product ID, quantity, subtotal, and product price.
+1. Customers: Represents customers who place orders.
+2. Orders: Represents individual orders placed by customers.
+3. Order Items: Represents the individual items included within an order.
 
 Here is the link to the datasets - https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/tree/main/Datasets
 
 ## Data Model
 ![Data Model](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/ER.png)
+
+This diagram shows a database schema, which describes the structure of a database. The database is about orders, customers, and the items in those orders. Here's a breakdown of the entities and their relationships:
+
+### Entities:
+
+1. Customers: Represents customers who place orders. Includes information like customer ID, first and last name, username, password, address, city, state, and postal code.
+   
+3. Orders: Represents individual orders placed by customers. Includes information like order ID, order date, customer ID, and order status.
+   
+4. Order Items: Represents the individual items included within an order. Includes information like order item ID, the order ID it belongs to, the product ID, quantity, subtotal, and product price.
+   
+### Relationships:
+
+1. Customers and Orders: A customer can place multiple orders (1-to-many relationship). Each order is associated with a single customer.
+2. Orders and Order Items: Each order can have multiple items (1-to-many relationship). Each item belongs to a single order.
 
 
