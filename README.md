@@ -89,7 +89,14 @@ This diagram shows a database schema, which describes the structure of a databas
 1. Customers and Orders: A customer can place multiple orders (1-to-many relationship). Each order is associated with a single customer.
 2. Orders and Order Items: Each order can have multiple items (1-to-many relationship). Each item belongs to a single order.
 
-### Databricks Notebook
+## Databricks Notebook
 [project_source_code](Sales_Project.ipynb)
+
+## Basic Flow for creating this project
+
+1. Subscription Needed -  Azure & AWS Cloud (Free Trail also fine)
+
+# Resource Group Creation in Azure
+   
 
 
