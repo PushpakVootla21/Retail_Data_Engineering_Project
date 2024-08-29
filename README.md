@@ -1,3 +1,2 @@
 # Retaildb_Project
-Objective - To find the customer total orders and totalpurchase amount
-Datasets -  Refer Datasets folder
+Retail Data Engineering Project using Data Factory & Data Bricks
