@@ -19,4 +19,10 @@ This project leverages Azure's robust data engineering ecosystem to analyze reta
    - Amazon S3
 
 ## Datasets used
+1. Customers: Represents customers who place orders. Includes information like customer ID, first and last name, username, password, address, city, state, and postal code.
+2. Orders: Represents individual orders placed by customers. Includes information like order ID, order date, customer ID, and order status.
+3. Order Items: Represents the individual items included within an order. Includes information like order item ID, the order ID it belongs to, the product ID, quantity, subtotal, and product price.
+
+Here is the link to the datasets - https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/tree/main/Datasets
+
 
