@@ -242,6 +242,38 @@ PRIMARY KEY (customer_id)
 );
 ```
 
+4. Creating Databricks workspace:
+
+- Step 1: Click on "Databricks"
+
+  In the Azure portal, click on the "Databricks" button in the navigation menu.
+
+- Step 2: Click on "New Databricks Workspace"
+
+  Click on the "New Databricks Workspace" button.
+
+- Step 3: Enter Workspace Details
+
+  In the "Create a Databricks Workspace" page, enter the following details:
+
+  1. Workspace name: Enter the name for your Databricks workspace (e.g., "retaidb-sales-databricks").
+  2. Subscription: Select the Azure subscription you want to use for this workspace.
+  3. Resource group: Select the resource group you created earlier (e.g., "EcommerceApp").
+  4. Location: Select the location for your workspace (e.g., "East US").
+  5. Pricing tier: Select the pricing tier for your workspace (e.g., "Standard" or "Premium").
+     
+Step 4: Click "Review + create"
+
+Click the "Review + create" button to review your workspace settings.
+
+Step 5: Click "Create"
+
+Click the "Create" button to create the workspace.
+
+Step 6: Verify Workspace Creation
+
+Once the workspace is created, you will see it listed in the "Databricks" page. You can click on the workspace to view its details and configure additional settings.
+
 
 
 
