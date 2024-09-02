@@ -96,7 +96,7 @@ This diagram shows a database schema, which describes the structure of a databas
 
 Subscription Needed -  Azure & AWS Cloud (Free Trail subscription also works fine)
 
-1. Resource Group creation
+## Resource Group creation
 
 In Azure, a resource group is a container that holds related resources for an application. It is a logical grouping of resources that can be managed together. Resource groups provide a way to organize and manage resources in Azure, making it easier to perform actions on a group of resources as a single unit.
 
@@ -140,7 +140,7 @@ A resource group name *retaildbproject* is created as shown.
 
 ![Resource Group](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Resource%20group.png)
 
-2. Azure Data Lake Storage (ADLS Gen2) creation:
+## Azure Data Lake Storage (ADLS Gen2) creation:
    
 - Step 1: Click on "Storage accounts"
 
@@ -179,7 +179,7 @@ A resource group name *retaildbproject* is created as shown.
 
 ![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/ADLS_files.png)
 
-3. Azure SQL Database Creation:
+ ## Azure SQL Database Creation:
    
 - Step 1: Click on "SQL databases"
 
@@ -214,7 +214,7 @@ A resource group name *retaildbproject* is created as shown.
 
   *retaildb* database is created. Two tables *customers & valid_order_status for validating the order_status* are created with SQL code below and the *sales_reporting* table will be auto generated after processing completion in databricks
 
-![folders created](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20sql%20database.png)
+![data base creation](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20sql%20database.png)
 
 SQL Code for creating valid_order_status table
 
@@ -241,8 +241,7 @@ customer_zipcode VARCHAR(45) NOT NULL,
 PRIMARY KEY (customer_id)
 );
 ```
-
-4. Creating Databricks workspace:
+## Creating Databricks workspace:
 
 - Step 1: Click on "Databricks"
 
@@ -272,7 +271,316 @@ Click the "Create" button to create the workspace.
 
 Step 6: Verify Workspace Creation
 
-Once the workspace is created, you will see it listed in the "Databricks" page. You can click on the workspace to view its details and configure additional settings.
+Once the workspace is created, you will see it listed in the "Databricks" page. You can click on the launch workspace to view its details and configure additional settings.
+
+![Databricks creation](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Databricks_workspace.png)
+
+## Creation of Data Factory
+
+Step 1: Go to Azure Data Factory Studio
+
+Open a web browser and navigate to the Azure Data Factory Studio.
+
+Step 2: Create a new data factory
+
+In the Azure Data Factory Studio, click on the "Create a new data factory" button.
+
+Step 3: Enter Data Factory Details
+
+In the "Create a data factory" page, enter the following details:
+
+1. Name: Enter retail-sales-df as the name of your data factory.
+2. Subscription: Select the Azure subscription you want to use for this data factory.
+3. Resource group: Select the resource group you created earlier (e.g., "EcommerceApp").
+4. Location: Select the location for your data factory (e.g., "East US").
+5. Step 4: Click "Create"
+
+Click the "Create" button to create the data factory.
+
+Step 5: Verify Data Factory Creation
+
+Once the data factory is created, you will see it listed in the "Data factories" page. You can click on the launch data factory to view its details and configure additional settings.
+
+![data factory creation](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/azure-data-factory-launch-studio.png)
+
+## Generation of Access keys and creation S3 bucket in AWS
+
+1. Generate Access Keys:
+
+Step 1: Log in to the AWS Management Console
+
+Go to the AWS website and log in to the AWS Management Console using your AWS account credentials.
+
+Step 2: Navigate to the IAM Dashboard
+
+Click on the "IAM" button in the navigation menu to navigate to the IAM dashboard.
+
+Step 3: Click on "Users"
+
+In the IAM dashboard, click on the "Users" button in the navigation menu.
+
+Step 4: Select the User
+
+Select the user for which you want to generate access keys.
+
+Step 5: Click on "Security Credentials"
+
+Click on the "Security Credentials" tab.
+
+Step 6: Click on "Create Access Key"
+
+Click on the "Create Access Key" button.
+
+Step 7: Download the Access Key File
+
+Download the access key file (.csv) and store it securely.
+
+2. Create an S3 Bucket:
+
+Step 1: Log in to the AWS Management Console
+
+Go to the AWS website and log in to the AWS Management Console using your AWS account credentials.
+
+Step 2: Navigate to the S3 Dashboard
+
+Click on the "S3" button in the navigation menu to navigate to the S3 dashboard.
+
+Step 3: Click on "Create Bucket"
+
+Click on the "Create Bucket" button.
+
+Step 4: Enter Bucket Details
+
+Enter the following details:
+
+Bucket name: Enter a unique name for your S3 bucket.
+Region: Select the region where you want to create the bucket.
+Bucket settings: Choose the bucket settings as per your requirements.
+Step 5: Click "Create Bucket"
+
+Click the "Create Bucket" button to create the S3 bucket.
+
+Step 6: Verify Bucket Creation
+
+Once the bucket is created, you will see it listed in the S3 dashboard. You can click on the bucket to view its details and configure additional settings.
+
+![s3 bucket creation](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/s3_bucket.png)
+
+## creation of linked service for storage account(ADLS Gen2), Data bricks, Key Vault, S3, Azure SQL Database
+
+1. Create Linked Service for Storage Account:
+
+Step 1: Go to Azure Data Factory Studio
+
+Open a web browser and navigate to the Azure Data Factory Studio.
+
+Step 2: Click on "Author & Monitor"
+
+Click on the "Author & Monitor" button in the navigation menu.
+
+Step 3: Click on "Connections"
+
+Click on the "Connections" button in the navigation menu.
+
+Step 4: Click on "New"
+
+Click on the "New" button to create a new linked service.
+
+Step 5: Select "Azure Blob Storage"
+
+Select "Azure Blob Storage" as the type of linked service.
+
+Step 6: Enter Storage Account Details
+
+Enter the following details:
+
+Name: Enter a name for your linked service.
+Storage account name: Enter the name of your Azure Storage account.
+Storage account key: Enter the access key for your Azure Storage account.
+Tenant ID: Enter the tenant ID for your Azure Storage account.
+Step 7: Click "Create"
+
+Click the "Create" button to create the linked service.
+
+2. Create Linked Service for Databricks:
+   
+    a. Generation of access token in data bricks and storing it in key vault
+   
+1. Generate Access Token in Databricks:
+
+Step 1: Log in to Databricks
+
+Go to the Databricks website and log in to your Databricks account.
+
+Step 2: Click on "Settings"
+
+Click on the "Settings" icon in the top right corner of the Databricks dashboard.
+
+Step 3: Click on "User Settings"
+
+Click on the "User Settings" button.
+
+Step 4: Click on "Access Tokens"
+
+Click on the "Access Tokens" tab.
+
+Step 5: Click on "Generate New Token"
+
+Click on the "Generate New Token" button.
+
+Step 6: Enter Token Details
+
+Enter the following details:
+
+Token name: Enter a name for your access token.
+Token description: Enter a description for your access token.
+Expiration period: Select the expiration period for your access token.
+Step 7: Click "Generate"
+
+Click the "Generate" button to generate the access token.
+
+2. Store Access Token in Azure Key Vault:
+
+Step 1: Log in to Azure Portal
+
+Go to the Azure portal website and log in to your Azure account.
+
+Step 2: Navigate to Key Vault
+
+Navigate to the Key Vault service in the Azure portal.
+
+Step 3: Select the Key Vault
+
+Select the Key Vault where you want to store the access token.
+
+Step 4: Click on "Secrets"
+
+Click on the "Secrets" button in the navigation menu.
+
+Step 5: Click on "Generate/Import"
+
+Click on the "Generate/Import" button.
+
+Step 6: Enter Secret Details
+
+Enter the following details:
+
+Secret name: Enter a name for your secret.
+Secret value: Enter the access token generated in Databricks.
+Content type: Select "text" as the content type.
+Step 7: Click "Create"
+
+Click the "Create" button to create the secret.
+
+3. Store the Key Vault Secret ID in Azure Data Factory:
+
+Step 1: Go to Azure Data Factory Studio
+
+Open a web browser and navigate to the Azure Data Factory Studio.
+
+Step 2: Click on "Author & Monitor"
+
+Click on the "Author & Monitor" button in the navigation menu.
+
+Step 3: Click on "Connections"
+
+Click on the "Connections" button in the navigation menu.
+
+Step 4: Select the Linked Service
+
+Select the linked service for Databricks that you created earlier.
+
+Step 5: Click on "Edit"
+
+Click on the "Edit" button to edit the linked service.
+
+Step 6: Enter Key Vault Secret ID
+
+Enter the Secret ID of the access token stored in Key Vault.
+
+Step 7: Click "Save"
+
+Click the "Save" button to save the changes.
+
+Note: Make sure to replace the placeholders with the actual values for your Databricks access token and Key Vault secret.
+
+3. Linked service for S3
+
+Create Linked Service for S3:
+
+Step 1: Go to Azure Data Factory Studio
+
+Open a web browser and navigate to the Azure Data Factory Studio.
+
+Step 2: Click on "Author & Monitor"
+
+Click on the "Author & Monitor" button in the navigation menu.
+
+Step 3: Click on "Connections"
+
+Click on the "Connections" button in the navigation menu.
+
+Step 4: Click on "New"
+
+Click on the "New" button to create a new linked service.
+
+Step 5: Select "Amazon S3"
+
+Select "Amazon S3" as the type of linked service.
+
+Step 6: Enter S3 Details
+
+Enter the following details:
+
+Name: Enter a name for your linked service.
+Service URL: Enter the URL of your S3 bucket.[Dont fill anything]
+Access Key ID: Enter the access key ID for your S3 bucket.[use key vault in storing Key id & key]
+Secret Access Key: Enter the secret access key for your S3 bucket.
+Step 7: Click "Create"
+
+Click the "Create" button to create the linked service.
+
+4. Linked service for Azure SQL Database
+
+Create Linked Service for Azure SQL Database:
+
+Step 1: Go to Azure Data Factory Studio
+
+Open a web browser and navigate to the Azure Data Factory Studio.
+
+Step 2: Click on "Author & Monitor"
+
+Click on the "Author & Monitor" button in the navigation menu.
+
+Step 3: Click on "Connections"
+
+Click on the "Connections" button in the navigation menu.
+
+Step 4: Click on "New"
+
+Click on the "New" button to create a new linked service.
+
+Step 5: Select "Azure SQL Database"
+
+Select "Azure SQL Database" as the type of linked service.
+
+Step 6: Enter Azure SQL Database Details
+
+Enter the following details:
+
+Name: Enter a name for your linked service.
+Server name: Enter the server name of your Azure SQL Database.
+Database name: Enter the database name of your Azure SQL Database.
+Username: Enter the username to connect to your Azure SQL Database.[use key vault to store]
+Password: Enter the password to connect to your Azure SQL Database.[use key vault to store]
+Step 7: Click "Create"
+
+Click the "Create" button to create the linked service.
+
+![key vault](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20Key_vault.png)
+
+![linked services](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Linked_services.png)
+
 
 
 
