@@ -366,9 +366,9 @@ Once the bucket is created, you will see it listed in the S3 dashboard. You can 
 
 ![s3 bucket creation](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/s3_bucket.png)
 
-## creation of linked service for storage account(ADLS Gen2), Data bricks, Key Vault, S3, Azure SQL Database
+## Creation of linked service for storage account(ADLS Gen2), Data bricks, Key Vault, S3, Azure SQL Database
 
-1. Create Linked Service for Storage Account:
+ 1. Create Linked Service for Storage Account:
 
 Step 1: Go to Azure Data Factory Studio
 
@@ -402,77 +402,79 @@ Step 7: Click "Create"
 
 Click the "Create" button to create the linked service.
 
-2. Create Linked Service for Databricks:
+ 2. Create Linked Service for Databricks:
    
     a. Generation of access token in data bricks and storing it in key vault
    
-1. Generate Access Token in Databricks:
+     1. Generate Access Token in Databricks:
+        
+        Step 1: Log in to Databricks
+        
+        Go to the Databricks website and log in to your Databricks account.
 
-Step 1: Log in to Databricks
+        Step 2: Click on "Settings"
 
-Go to the Databricks website and log in to your Databricks account.
+        Click on the "Settings" icon in the top right corner of the Databricks dashboard.
 
-Step 2: Click on "Settings"
+        Step 3: Click on "User Settings"
 
-Click on the "Settings" icon in the top right corner of the Databricks dashboard.
+        Click on the "User Settings" button.
 
-Step 3: Click on "User Settings"
+        Step 4: Click on "Access Tokens"
 
-Click on the "User Settings" button.
+        Click on the "Access Tokens" tab.
 
-Step 4: Click on "Access Tokens"
+        Step 5: Click on "Generate New Token"
 
-Click on the "Access Tokens" tab.
+        Click on the "Generate New Token" button.
 
-Step 5: Click on "Generate New Token"
+        Step 6: Enter Token Details
 
-Click on the "Generate New Token" button.
+        Enter the following details:
 
-Step 6: Enter Token Details
+        Token name: Enter a name for your access token.
+        Token description: Enter a description for your access token.
+        Expiration period: Select the expiration period for your access token.
 
-Enter the following details:
+        Step 7: Click "Generate"
 
-Token name: Enter a name for your access token.
-Token description: Enter a description for your access token.
-Expiration period: Select the expiration period for your access token.
-Step 7: Click "Generate"
+        Click the "Generate" button to generate the access token.
 
-Click the "Generate" button to generate the access token.
+   2. Store Access Token in Azure Key Vault:
 
-2. Store Access Token in Azure Key Vault:
+       Step 1: Log in to Azure Portal
 
-Step 1: Log in to Azure Portal
+       Go to the Azure portal website and log in to your Azure account.
 
-Go to the Azure portal website and log in to your Azure account.
+       Step 2: Navigate to Key Vault
 
-Step 2: Navigate to Key Vault
+       Navigate to the Key Vault service in the Azure portal.
 
-Navigate to the Key Vault service in the Azure portal.
+       Step 3: Select the Key Vault
 
-Step 3: Select the Key Vault
+       Select the Key Vault where you want to store the access token.
 
-Select the Key Vault where you want to store the access token.
+       Step 4: Click on "Secrets"
 
-Step 4: Click on "Secrets"
+       Click on the "Secrets" button in the navigation menu.
 
-Click on the "Secrets" button in the navigation menu.
+       Step 5: Click on "Generate/Import"
 
-Step 5: Click on "Generate/Import"
+       Click on the "Generate/Import" button.
 
-Click on the "Generate/Import" button.
+       Step 6: Enter Secret Details
 
-Step 6: Enter Secret Details
+       Enter the following details:
+   
+       Secret name: Enter a name for your secret.
+       Secret value: Enter the access token generated in Databricks.
+       Content type: Select "text" as the content type.
 
-Enter the following details:
+       Step 7: Click "Create"
 
-Secret name: Enter a name for your secret.
-Secret value: Enter the access token generated in Databricks.
-Content type: Select "text" as the content type.
-Step 7: Click "Create"
+       Click the "Create" button to create the secret.
 
-Click the "Create" button to create the secret.
-
-3. Store the Key Vault Secret ID in Azure Data Factory:
+4. Store the Key Vault Secret ID in Azure Data Factory:
 
 Step 1: Go to Azure Data Factory Studio
 
@@ -580,6 +582,41 @@ Click the "Create" button to create the linked service.
 ![key vault](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Azure%20Key_vault.png)
 
 ![linked services](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Linked_services.png)
+
+## Developing Logic using Interactive Databricks Cluster
+
+1. Create an interactive cluster in databricks that will execute the databricks notebook.
+
+2. Perform the following in the Databricks Notebook :
+   a. Create a Mount Point.
+   b. Create a Dataframe.
+   c. Load the orders.csv file into a Dataframe and perform first validation(checking for duplicates order_id in order_status).
+   d. We need to apply the second validation that is whether the order_status fields in the data are valid or not. To do this we need to make connectivity to Azure SQL DB from our databricks notebook.
+Note: Establish a connection with Azure SQL Server from databricks. During this process, a secret scope has to be created so that databricks can access the sql-password which is stored in the key vault.
+
+   ### Creating a secret scope in databricks
+
+   Step 1: Navigate to the Secret Scope Creation Page Navigate to the following URL to create a new secret scope:
+   
+   https://<your-databricks-instance-url>/#secrets/create
+
+   Replace <your-databricks-instance-url> with the URL of your Databricks instance.
+
+   Step 2: Enter the Secret Scope Name and Azure Key Vault DNS Name Enter a name for your secret scope and the DNS name of your Azure Key Vault.
+
+   The DNS name should be in the format https://<your-key-vault-name>.vault.azure.net/.
+
+   Step 3: Authenticate with Azure Key Vault Authenticate with your Azure Key Vault using the Service Principal or Managed Identity method.
+
+   Step 4: Configure the Secret Scope Configure the secret scope by specifying the Azure Key Vault credentials and the secret name that contains
+   the SQL password.
+
+   Step 5: Save the Secret Scope Save the secret scope. Once saved, you can use the secret scope in your Databricks notebooks to access the SQL 
+   password stored in the Key Vault.
+
+
+
+
 
 
 
