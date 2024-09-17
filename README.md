@@ -591,8 +591,10 @@ Click the "Create" button to create the linked service.
    a. Create a Mount Point.
    b. Create a Dataframe.
    c. Load the orders.csv file into a Dataframe and perform first validation(checking for duplicates order_id in order_status).
-   d. We need to apply the second validation that is whether the order_status fields in the data are valid or not. To do this we need to make connectivity to Azure SQL DB from our databricks notebook.
-Note: Establish a connection with Azure SQL Server from databricks. During this process, a secret scope has to be created so that databricks can access the sql-password which is stored in the key vault.
+   d. We need to apply the second validation that is whether the order_status fields in the data are valid or not. To do this we need to make connectivity to Azure SQL DB from our databricks 
+      notebook.
+      Note: Establish a connection with Azure SQL Server from databricks. During this process, a secret scope has to be created so that databricks can access the sql-password which is stored in 
+      the key vault.
 
    ### Creating a secret scope in databricks
 
@@ -614,11 +616,33 @@ Note: Establish a connection with Azure SQL Server from databricks. During this 
    Step 5: Save the Secret Scope Save the secret scope. Once saved, you can use the secret scope in your Databricks notebooks to access the SQL 
    password stored in the Key Vault.
 
+   e. 5. First Validation Check - If there are any duplicate order_ids. Once the validation is successful, create a Spark Table from Dataframe
 
+    ```ruby
+    errorFlg = False
+    ordersCount = ordersDf.count()
+    distinctOrdersCount = ordersDf.select(‘order_id’).distinct().count()
+    
+    if ordersCount != distinctOrdersCount
+      errorFlg = True
+    if errorFlg :
+            dbutils.fs.mv(‘/mnt/sales/landing/orders.csv’,’/mnt/sales/discarded’)
+            dbutil.notebook.exit(‘{“errorFlg”: “true”, “errorMsg”: “Orderid is repeated”}’)
+    ordersDf.createOrReplaceTempView(“orders”)
+    ```
 
-
-
-
+    f. Then the second validation(check for valid orders_status) is evaluated.
+       For this validation, we need to connect to Azure SQL DB from the databricks notebook. The following details are required for connecting to the SQL DB dbServer
+       dbPort
+       dbName
+       dbUser
+       dbPassword
+       databricksScope
+   ```ruby
+      connectionUrl = ‘jdbc:sqlserver://{}.database.windows.net:{};database={};user={};’.format(dbServer, dbPort, dbName, dbUser)
+                      dbPassword = dbutils.secrets.get(scope = databricksScope,key=’sql-password’)
+      connectionProperties = {‘password’ : dbPassword,‘driver’: ‘com.microsoft.sqlserver.jdbc.SQLServerDriver’}
+  ```
 
 
 
