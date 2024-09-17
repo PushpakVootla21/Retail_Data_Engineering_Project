@@ -589,10 +589,14 @@ Click the "Create" button to create the linked service.
 
 2. Perform the following in the Databricks Notebook :
    a. Create a Mount Point.
+   
    b. Create a Dataframe.
+   
    c. Load the orders.csv file into a Dataframe and perform first validation(checking for duplicates order_id in order_status).
+   
    d. We need to apply the second validation that is whether the order_status fields in the data are valid or not. To do this we need to make connectivity to Azure SQL DB from our databricks 
       notebook.
+   
       Note: Establish a connection with Azure SQL Server from databricks. During this process, a secret scope has to be created so that databricks can access the sql-password which is stored in 
       the key vault.
 
