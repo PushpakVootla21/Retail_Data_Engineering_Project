@@ -583,6 +583,63 @@ Click the "Create" button to create the linked service.
 
 ![linked services](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/Linked_services.png)
 
+## Creating Data sets in Azure Data Factory
+
+1. Data Set for Order_Items data coming from S3 bucket
+
+Step 1: Create a New Dataset
+
+Log in to your Azure Data Factory instance
+
+Click on the Author & Monitor button
+
+Click on the Create button and select Dataset from the dropdown menu
+
+Select Azure Data Lake Storage Gen2 as the dataset type (since S3 is an S3-compatible storage)
+
+Click Continue
+
+Step 2: Configure the S3 Connection
+
+In the New dataset page, click on the New button next to Linked service
+
+Select Amazon S3 as the linked service type
+
+Enter the following details:
+
+Name: Enter a name for your S3 linked service
+
+Authentication type: Select Access key
+
+Access key ID: Enter your S3 access key ID
+
+Secret access key: Enter your S3 secret access key
+
+Bucket name: Enter the name of your S3 bucket
+
+File path: Enter the path to the JSON file in your S3 bucket (e.g., path/to/your/file.json)
+Click Create
+
+Step 3: Configure the JSON Dataset
+
+In the New dataset page, select the S3 linked service you created in Step 2
+
+Enter the following details:
+
+Name: Enter a name for your dataset
+File format: Select JSON
+Compression type: Select None (or select a compression type if your JSON file is compressed)
+JSON settings: Select Single document (or select Array of documents if your JSON file contains an array of documents)
+Click Create
+
+Step 4: Validate the Dataset
+
+Click on the Validate button to validate the dataset
+
+![S3_bucket_dataset]([https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/order_items_json_s3_ds.png])
+
+ADF will connect to your S3 bucket and validate the JSON file
+
 ## Developing Logic using Interactive Databricks Cluster
 
 1. Create an interactive cluster in databricks that will execute the databricks notebook.
@@ -620,7 +677,7 @@ Click the "Create" button to create the linked service.
    Step 5: Save the Secret Scope Save the secret scope. Once saved, you can use the secret scope in your Databricks notebooks to access the SQL 
    password stored in the Key Vault.
 
-   e. 5. First Validation Check - If there are any duplicate order_ids. Once the validation is successful, create a Spark Table from Dataframe
+   e. First Validation Check - If there are any duplicate order_ids. Once the validation is successful, create a Spark Table from Dataframe
 
     ```ruby
     errorFlg = False
@@ -646,7 +703,17 @@ Click the "Create" button to create the linked service.
       connectionUrl = ‘jdbc:sqlserver://{}.database.windows.net:{};database={};user={};’.format(dbServer, dbPort, dbName, dbUser)
                       dbPassword = dbutils.secrets.get(scope = databricksScope,key=’sql-password’)
       connectionProperties = {‘password’ : dbPassword,‘driver’: ‘com.microsoft.sqlserver.jdbc.SQLServerDriver’}
-  ```
+    ```
+
+   g. Once the second validation is also successful, notebook will exit by giving the following message and the file is moved to the staging folder.
+
+   ```ruby
+      Notebook exited: {"errorflag:"false","errorMsg:"All Good"}
+   ```
+
+
+### Creating a Pipeline in Azure Data Factory (Automating the pipeline execution)
+    
 
 
 
