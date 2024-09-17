@@ -636,9 +636,9 @@ Step 4: Validate the Dataset
 
 Click on the Validate button to validate the dataset
 
-![S3_bucket_dataset]([https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/order_items_json_s3_ds.png])
-
 ADF will connect to your S3 bucket and validate the JSON file
+
+![linked services](https://github.com/PushpakVootla21/Retail_Data_Engineering_Project/blob/main/Project_Ref_Images/order_items_json_s3_ds.png)
 
 ## Developing Logic using Interactive Databricks Cluster
 
